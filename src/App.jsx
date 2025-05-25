@@ -112,7 +112,7 @@ function App() {
       </section>
 
       {/*Theme */}
-      <section id="details" className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 text-center mt-10">
+      <section id="details" className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-6 text-center mt-10">
         <div ref={ref5} className="w-full max-w-screen-md overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -129,7 +129,7 @@ function App() {
         </div>
       </section>
 
-      <section id="details" className="min-h-screen flex flex-col items-center justify-centerrounded-lg p-6 md:p-10 text-center mt-10">
+      <section id="details" className="min-h-screen flex flex-col items-center justify-centerrounded-lg p-6 md:p-6 text-center mt-10">
         <div ref={ref4} className="w-full max-w-screen-md overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
