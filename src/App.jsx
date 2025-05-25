@@ -6,6 +6,8 @@ import { useInView } from "framer-motion";
 function App() {
   const ref1 = useRef(null);
   const isInView = useInView(ref1, { once: false });
+   const ref2 = useRef(null);
+  const is2InView = useInView(ref2, { once: false });
 
   return (
     <>  
@@ -15,52 +17,65 @@ function App() {
           <p className="text-orange-400 text-base md:text-xl max-w-xl">We are excited to invite you to our special event filled with fun, food, and friends.</p>
         </section>
 
-        <section className="min-h-screen flex flex-col items-center justify-center rounded-lg mt-10 p-6 md:p-10 space-y-10">
-            <section className="min-h-screen flex flex-col items-center justify-center rounded-lg mt-10 p-6 md:p-10 space-y-10">
-            {/* Top full-size image for desktop */}
+        <section className='flex justify-center m-10'>
+      <div className="w-full max-w-screen-md overflow-hidden pt-10  ">
+          <motion.div
+            ref={ref2}
+            initial={{ opacity: 0, y: 50 }}
+            animate={is2InView ? { opacity: 1, y: 10 } : {}} 
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full"
+            style={{ willChange: "transform, opacity" }}
+          >
             <img
               src="https://i.imgur.com/QWaKciJ.png"
               alt="Main Phone Desktop"
               className="hidden md:block h-160 object-cover rounded-lg"
+              loading="lazy"
             />
 
-            {/* Top full-size image for mobile */}
             <img
               src="https://i.imgur.com/HqzWBxK.jpeg"
               alt="Main Phone Mobile"
               className="block md:hidden h-160 object-cover rounded-lg"
+              loading="lazy"
             />
-
-            {/* Animated images */}
-            <motion.div
-              ref={ref1}
-              initial={{ opacity: 0, y: 150 }}
-              animate={isInView ? { opacity: 1, y: 40 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-wrap justify-center gap-4"
-            >
-              <img
-                src="https://i.imgur.com/OgTvDJ9.jpeg"
-                alt="Phone 1"
-                className="w-36 h-60 md:w-36 md:h-72 object-cover rounded-md"
-              />
-              <img
-                src="https://i.imgur.com/wvYzh6X.jpeg"
-                alt="Phone 2"
-                className="w-36 h-60 md:w-40 md:h-72 object-cover rounded-md"
-              />
-              <img
-                src="https://i.imgur.com/vv2fqni.jpeg"
-                alt="Phone 3"
-                className="w-36 h-60 md:w-40 md:h-72 object-cover rounded-md"
-              />
-              <img
-                src="https://i.imgur.com/xdbs6RN_d.jpeg?maxwidth=520&shape=thumb&fidelity=high.jpg"
-                alt="Phone 4"
-                className="w-36 h-60 md:w-40 md:h-72 object-cover rounded-md"
-              />
-            </motion.div>
-          </section>
+          </motion.div>
+          </div>
+        </section>
+        
+        <section className="min-h-screen flex flex-col items-center justify-center rounded-lg  p-6 md:p-10 space-y-10 shadow-2xl">
+            {/* Animated slideshow */}
+            <div className="w-full max-w-screen-md overflow-hidden">
+              <motion.div
+                ref={ref1}
+                initial={{ opacity: 0, y: 150 }}
+                animate={isInView ? { opacity: 1, y: 10 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full"
+              >
+                <motion.div
+                  className="flex"
+                  animate={{ x: ["0%", "-100%", "0%"] }}
+                  transition={{
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    ease: "linear",
+                    duration: 12
+                  }}
+                >
+                  {["https://i.imgur.com/OgTvDJ9.jpeg", "https://i.imgur.com/wvYzh6X.jpeg", "https://i.imgur.com/vv2fqni.jpeg", "https://i.imgur.com/xdbs6RN_d.jpeg?maxwidth=520&shape=thumb&fidelity=high.jpg"].map((src, index) => (
+                    <img
+                      key={index}
+                      src={src}
+                      alt={`Phone ${index + 1}`}
+                      className="md:w-40 md:h-72 object-cover rounded-md mx-2"
+                    />
+                  ))}
+                </motion.div>
+              </motion.div>
+            </div>
         </section>
 
         <section id="details" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-amber-300 to-yellow-300 rounded-lg shadow-lg p-6 md:p-10 text-center mt-10">
