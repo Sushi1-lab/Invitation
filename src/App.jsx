@@ -14,6 +14,9 @@ function App() {
   const ref4 = useRef(null);
   const isInView4 = useInView(ref4, { once: false });
 
+   const ref5 = useRef(null);
+  const isInView5 = useInView(ref5, { once: false });
+
   const scrollImages = [
     "https://i.imgur.com/OgTvDJ9.jpeg",
     "https://i.imgur.com/lThPxB5.jpeg",
@@ -108,8 +111,25 @@ function App() {
         </div>
       </section>
 
-      {/* Event Details Section */}
-      <section id="details" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-amber-300 to-yellow-300 rounded-lg shadow-lg p-6 md:p-10 text-center mt-10">
+      {/*Theme */}
+      <section id="details" className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 text-center mt-10">
+        <div ref={ref5} className="w-full max-w-screen-md overflow-hidden pt-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView5 ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="w-full"
+          >
+            <img
+              src="https://i.imgur.com/CgWKLNx.png"
+              alt="Event Details"
+              className=" object-cover rounded-lg"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="details" className="min-h-screen flex flex-col items-center justify-centerrounded-lg p-6 md:p-10 text-center mt-10">
         <div ref={ref4} className="w-full max-w-screen-md overflow-hidden pt-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -120,11 +140,12 @@ function App() {
             <img
               src="https://i.imgur.com/7jGWOIB.png"
               alt="Event Details"
-              className="w-full h-auto object-cover rounded-lg"
+              className=" object-cover rounded-lg"
             />
           </motion.div>
         </div>
       </section>
+
 
       {/* Map Section */}
       <section className="w-full max-w-screen-md mx-auto my-10 px-4">
