@@ -76,7 +76,7 @@ function App() {
                 loading="lazy"
               />
               <img
-                src="https://i.imgur.com/oHhNrWy.png"
+                src="https://i.imgur.com/chXrqB7.jpeg"
                 alt="Side Image 2"
                 className="w-full md:w-1/2 object-cover rounded-lg"
                 loading="lazy"
