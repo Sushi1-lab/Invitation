@@ -129,7 +129,7 @@ function App() {
         </div>
       </section>
 
-      <section id="details" className="min-h-screen flex flex-col items-center justify-centerrounded-lg p-6 md:p-6 text-center mt-10">
+      <section id="details" className="min-h-screen flex flex-col items-center justify-centerrounded-lg p-6 md:p-6git text-center ">
         <div ref={ref4} className="w-full max-w-screen-md overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
