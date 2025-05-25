@@ -31,15 +31,9 @@ function App() {
             style={{ willChange: 'transform, opacity' }}
           >
             <img
-              src="https://i.imgur.com/QWaKciJ.png"
-              alt="Main Phone Desktop"
-              className="hidden md:block w-full h-auto object-cover rounded-lg"
-              loading="lazy"
-            />
-            <img
               src="https://i.imgur.com/HqzWBxK.jpeg"
               alt="Main Phone Mobile"
-              className="block md:hidden w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
               loading="lazy"
             />
           </motion.div>
