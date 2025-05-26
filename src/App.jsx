@@ -17,6 +17,15 @@ function App() {
    const ref5 = useRef(null);
   const isInView5 = useInView(ref5, { once: false });
 
+   const ref6 = useRef(null);
+  const isInView6 = useInView(ref6, { once: false });
+
+     const ref7 = useRef(null);
+  const isInView7 = useInView(ref7, { once: false });
+
+  const ref8 = useRef(null);
+  const isInView8 = useInView(ref8, { once: false });
+
   const scrollImages = [
     "https://i.imgur.com/OgTvDJ9.jpeg",
     "https://i.imgur.com/lThPxB5.jpeg",
@@ -32,34 +41,65 @@ function App() {
   return (
     <div className="pt-20 px-4 md:px-6 flex flex-col bg-amber-200">
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center bg-[url('https://i.imgur.com/PaftnfX.jpeg')] bg-cover bg-center rounded-lg shadow-lg p-6 md:p-10 text-center">
-        <h1 className="text-orange-400 text-3xl md:text-5xl font-extrabold mb-4">Join Us for a Celebration!</h1>
-        <p className="text-orange-400 text-base md:text-xl max-w-xl">We are excited to invite you to our special event filled with fun, food, and friends.</p>
-      </section>
+    
 
-      {/* Image Section 1 */}
-      <section className="flex justify-center m-10">
-        <div ref={ref2} className="w-full max-w-screen-md overflow-hidden pt-10">
+      <section className="relative min-h-screen flex flex-col items-center justify-center bg-[url('https://i.imgur.com/PaftnfX.jpeg')] bg-cover bg-center rounded-lg shadow-lg p-6 md:p-10 text-center overflow-hidden">
+        {/* Text Content */}
+        <h1 className="text-orange-400 text-3xl md:text-5xl font-extrabold mb-4 z-20 relative">Join Us for a Celebration!</h1>
+        <p className="text-orange-400 text-base md:text-xl max-w-xl z-20 relative">
+          We are excited to invite you to our special event filled with fun, food, and friends.
+        </p>
+
+        {/* Animated Foreground Image */}
+        <div ref={ref7} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView2 ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, x: -100 }}
+            animate={isInView7 ? { rotate: 10, opacity: 1, x: 0, y: 100} : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full"
+            className="w-50"
           >
             <img
-              src="https://i.imgur.com/QWaKciJ.png"
-              alt="Main Phone Desktop"
-              className="hidden md:block w-full h-auto object-cover rounded-lg"
-            />
-            <img
-              src="https://i.imgur.com/HqzWBxK.jpeg"
+              src="https://i.imgur.com/70UaXmn.jpeg"
               alt="Main Phone Mobile"
-              className="block md:hidden w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          </motion.div>
+        </div>
+
+        {/* Animated Background Image */}
+        <div ref={ref8} className="absolute w-full max-w-screen-md pt-10 z-10">
+          <motion.div
+            initial={{ opacity: 0, x: 300, y: 40 }}
+            animate={isInView8 ? { rotate: 10, opacity: 1, x: 300, y: -140 } : {}}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="w-50"
+          >
+            <img
+              src="https://i.imgur.com/vv2fqni.jpeg"
+              alt="Main Phone Mobile"
+              className="w-full h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
       </section>
+
+      {/* Image Section 1 */}
+     <section className="flex justify-center m-10">
+      <div ref={ref6} className="w-full max-w-screen-md pt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView6 ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          className="w-full"
+        >
+          <img
+            src="https://i.imgur.com/HqzWBxK.jpeg"
+            alt="Main Phone Mobile"
+            className="w-full h-auto object-cover rounded-lg"
+          />
+        </motion.div>
+      </div>
+    </section>
 
       {/* Side-by-Side Image Section */}
       <section className="min-h-screen flex flex-col mb-10 justify-center items-center px-4">
@@ -135,7 +175,7 @@ function App() {
               ))}
             </motion.div>
           </div>
-        </section>
+        </section>  
       {/*Theme */}
       <section id="details" className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-6 text-center mt-10">
         <div ref={ref5} className="w-full max-w-screen-md overflow-hidden">
