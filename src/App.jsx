@@ -2,35 +2,8 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 function App() {
-  const ref1 = useRef(null);
-  const isInView1 = useInView(ref1, { once: false });
-
-  const ref2 = useRef(null);
-  const isInView2 = useInView(ref2, { once: false });
-
-  const ref3 = useRef(null);
-  const isInView3 = useInView(ref3, { once: false });
-
-  const ref4 = useRef(null);
-  const isInView4 = useInView(ref4, { once: false });
-
-   const ref5 = useRef(null);
-  const isInView5 = useInView(ref5, { once: false });
-
-   const ref6 = useRef(null);
-  const isInView6 = useInView(ref6, { once: false });
-
-     const ref7 = useRef(null);
-  const isInView7 = useInView(ref7, { once: false });
-
-  const ref8 = useRef(null);
-  const isInView8 = useInView(ref8, { once: false });
-
-    const ref9 = useRef(null);
-  const isInView9 = useInView(ref9, { once: false });
-
-    const ref10 = useRef(null);
-  const isInView10 = useInView(ref10, { once: false });
+  const refs = Array.from({ length: 10 }, () => useRef(null));
+  const inViews = refs.map((ref) => useInView(ref, { once: false }));
 
   const scrollImages = [
     "https://i.imgur.com/OgTvDJ9.jpeg",
@@ -38,7 +11,7 @@ function App() {
     "https://i.imgur.com/kW1yT1a.jpeg",
     "https://i.imgur.com/gDFc1KP.jpeg",
   ];
-   const scrollImages1 = [
+  const scrollImages1 = [
     "https://i.imgur.com/E3tmQTS.jpeg",
     "https://i.imgur.com/wvYzh6X.jpeg",
     "https://i.imgur.com/vv2fqni.jpeg",
@@ -46,104 +19,95 @@ function App() {
 
   return (
     <div className="pt-20 px-4 md:px-6 flex flex-col bg-amber-200">
-
-    
-
       <section className="relative min-h-screen flex flex-col items-center justify-center bg-[url('https://i.imgur.com/PaftnfX.jpeg')] bg-cover bg-center rounded-lg shadow-lg p-6 md:p-10 text-center overflow-hidden">
-        {/* Text Content */}
         <h1 className="text-orange-400 text-3xl md:text-5xl font-extrabold mb-4 z-20 relative">Join Us for a Celebration!</h1>
         <p className="text-orange-400 text-base md:text-xl max-w-xl z-20 relative">
           We are excited to invite you to our special event filled with fun, food, and friends.
         </p>
 
-        {/* Animated Foreground Image */}
-        <div ref={ref7} className="absolute w-full max-w-screen-md pt-10 z-10">
+        <div ref={refs[6]} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
-            animate={isInView7 ? { rotate: 10, opacity: 1, x: 0, y: 200} : {}}
+            animate={inViews[6] ? { rotate: 10, opacity: 1, x: 0, y: 200 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-40"
+            className="w-full max-w-xs md:max-w-sm"
           >
             <img
               src="https://i.imgur.com/gjNOIdU.jpeg"
               alt="Main Phone Mobile"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-50 h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
 
-        {/* Animated Background Image */}
-        <div ref={ref8} className="absolute w-full max-w-screen-md pt-10 z-10">
+        <div ref={refs[7]} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
             initial={{ opacity: 0, x: 300, y: 40 }}
-            animate={isInView8 ? { rotate: 10, opacity: 1, x: 200, y: -200 } : {}}
+            animate={inViews[7] ? { rotate: 10, opacity: 1, x: 200, y: -200 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-40"
+            className="w-50 max-w-xs md:max-w-sm"
           >
             <img
               src="https://i.imgur.com/vv2fqni.jpeg"
               alt="Main Phone Mobile"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-50 h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
       </section>
 
-      {/* Image Section 1 */}
-     <section className="flex justify-center m-10">
-      <div ref={ref6} className="w-full max-w-screen-md pt-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView6 ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="w-full"
-        >
-          <img
-            src="https://i.imgur.com/HqzWBxK.jpeg"
-            alt="Main Phone Mobile"
-            className="w-full h-auto object-cover rounded-lg"
-          />
-        </motion.div>
-      </div>
-
-       <div ref={ref9} className="absolute w-full max-w-screen-md pt-10 z-10">
+      <section className="relative flex justify-center m-10">
+        <div ref={refs[5]} className="w-full max-w-screen-md pt-10">
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={isInView9 ? { rotate: 10, opacity: 1, x: 5, y: 300} : {}}
+            initial={{ opacity: 0, y: 50 }}
+            animate={inViews[5] ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-35"
+            className="w-full"
           >
             <img
-              src="https://i.imgur.com/70UaXmn.jpeg"
+              src="https://i.imgur.com/HqzWBxK.jpeg"
               alt="Main Phone Mobile"
               className="w-full h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
 
-        {/* Animated Background Image */}
-        <div ref={ref10} className="absolute w-full max-w-screen-md pt-10 z-10">
+        <div ref={refs[8]} className="absolute w-full max-w-screen-md pt-10 z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={inViews[8] ? { rotate: 10, opacity: 1, x: -20, y: 300 } : {}}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="w-50 h-auto max-w-xs"
+          >
+            <img
+              src="https://i.imgur.com/70UaXmn.jpeg"
+              alt="Main Phone Mobile"
+              className="w-40 h-auto object-cover rounded-lg"
+            />
+          </motion.div>
+        </div>
+
+        <div ref={refs[9]} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
             initial={{ opacity: 0, x: 300, y: 40 }}
-            animate={isInView10 ? { rotate: 10, opacity: 1, x: 300, y: -120 } : {}}
+            animate={inViews[9] ? { rotate: 10, opacity: 1, x: 270, y: -120 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-30"
+            className="w-full max-w-xs"
           >
             <img
               src="https://i.imgur.com/OgTvDJ9.jpeg"
               alt="Main Phone Mobile"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-40 h-auto object-cover rounded-lg"
             />
           </motion.div>
-          </div>
-    </section>
+        </div>
+      </section>
 
-      {/* Side-by-Side Image Section */}
       <section className="min-h-screen flex flex-col mb-10 justify-center items-center px-4">
-        <div ref={ref3} className="w-full max-w-screen-lg">
+        <div ref={refs[2]} className="w-full max-w-screen-lg">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={isInView3 ? { opacity: 1, y: 0 } : {}}
+            animate={inViews[2] ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="w-full"
           >
@@ -152,104 +116,85 @@ function App() {
                 src="https://i.imgur.com/9GFQOJ2.jpeg"
                 alt="Side Image 1"
                 className="w-full md:w-1/2 object-cover rounded-lg"
-                loading="lazy"
               />
               <img
                 src="https://i.imgur.com/gsspBVW.jpeg"
                 alt="Side Image 2"
                 className="w-full md:w-1/2 object-cover rounded-lg"
-                loading="lazy"
               />
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Slideshow Section */}
-        <section className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 space-y-10 shadow-2xl bg-[url('https://i.imgur.com/LQzbKRm.jpeg')] bg-cover">
-          {/* First Scrolling Image Row */}
-          <div className="overflow-hidden w-full mt-10" ref={ref1}>
-            <motion.div
-              className="flex whitespace-nowrap flex-row"
-              animate={{ x: ['0%', '-50%'] }}
-              transition={{
-                repeat: Infinity,
-                repeatType: 'loop',
-                ease: 'linear',
-                duration: 10,
-              }}
-            >
-              {[...Array(2)].flatMap(() => scrollImages).map((src, index) => (
-                <img
-                  key={`scroll1-${index}`}
-                  src={src}
-                  alt={`Scroll Image 1 - ${index + 1}`}
-                  className="w-36 h-60 md:w-50 md:h-80 object-cover rounded-md mx-2"
-                />
-              ))}
-            </motion.div>
-          </div>
+      <section className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 space-y-10 shadow-2xl bg-[url('https://i.imgur.com/LQzbKRm.jpeg')] bg-cover">
+        <div className="overflow-hidden w-full mt-10" ref={refs[0]}>
+          <motion.div
+            className="flex whitespace-nowrap"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ repeat: Infinity, ease: 'linear', duration: 10 }}
+          >
+            {[...Array(2)].flatMap(() => scrollImages).map((src, index) => (
+              <img
+                key={`scroll1-${index}`}
+                src={src}
+                alt={`Scroll Image 1 - ${index + 1}`}
+                className="w-36 h-60 md:w-48 md:h-80 object-cover rounded-md mx-2"
+              />
+            ))}
+          </motion.div>
+        </div>
 
-          {/* Second Scrolling Image Row */}
-          <div className="overflow-hidden w-full" ref={ref2}>
-            <motion.div
-              className="flex whitespace-nowrap flex-row"
-              animate={{ x: ['0%', '-50%'] }}
-              transition={{
-                repeat: Infinity,
-                repeatType: 'loop',
-                ease: 'linear',
-                duration: 12, // Optional: different speed for visual contrast
-              }}
-            >
-              {[...Array(2)].flatMap(() => scrollImages1).map((src, index) => (
-                <img
-                  key={`scroll2-${index}`}
-                  src={src}
-                  alt={`Scroll Image 2 - ${index + 1}`}
-                  className="w-36 h-60 md:w-50 md:h-80 object-cover rounded-md mx-2"
-                />
-              ))}
-            </motion.div>
-          </div>
-        </section>  
-      {/*Theme */}
-      <section id="details" className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-6 text-center mt-10">
-        <div ref={ref5} className="w-full max-w-screen-md overflow-hidden">
+        <div className="overflow-hidden w-full" ref={refs[1]}>
+          <motion.div
+            className="flex whitespace-nowrap"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ repeat: Infinity, ease: 'linear', duration: 12 }}
+          >
+            {[...Array(2)].flatMap(() => scrollImages1).map((src, index) => (
+              <img
+                key={`scroll2-${index}`}
+                src={src}
+                alt={`Scroll Image 2 - ${index + 1}`}
+                className="w-36 h-60 md:w-48 md:h-80 object-cover rounded-md mx-2"
+              />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="flex flex-col items-center justify-center rounded-lg p-6 text-center mt-10">
+        <div ref={refs[4]} className="object-cover max-w-screen-md overflow-hidden w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={isInView5 ? { opacity: 1, y: 0 } : {}}
+            animate={inViews[4] ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full"
           >
             <img
               src="https://i.imgur.com/CgWKLNx.png"
               alt="Event Details"
-              className=" object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
       </section>
 
-      <section id="details" className="min-h-screen flex flex-col items-center justify-centerrounded-lg p-6 md:p-6git text-center ">
-        <div ref={ref4} className="w-full max-w-screen-md overflow-hidden">
+      <section className="flex flex-col items-center justify-center rounded-lg p-6 text-center mt-10">
+        <div ref={refs[3]} className="object-cover max-w-screen-md overflow-hidden w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={isInView4 ? { opacity: 1, y: 0 } : {}}
+            animate={inViews[3] ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full"
           >
             <img
               src="https://i.imgur.com/7jGWOIB.png"
               alt="Event Details"
-              className=" object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
       </section>
 
-
-      {/* Map Section */}
       <section className="w-full max-w-screen-md mx-auto my-10 px-4">
         <h2 className="text-2xl font-bold mb-4 text-center">📍 Location Map</h2>
         <div className="rounded-lg overflow-hidden shadow-lg">
@@ -277,7 +222,6 @@ function App() {
         </div>
       </section>
 
-      {/* RSVP Section */}
       <section id="rsvp" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-yellow-400 to-amber-500 rounded-lg shadow-lg p-6 md:p-10 text-center mt-10 text-white">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">RSVP</h2>
         <p className="text-base md:text-lg mb-6">Please let us know if you can make it by August 3, 2025 | Sunday.</p>
