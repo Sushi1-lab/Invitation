@@ -77,12 +77,12 @@ function App() {
             initial={{ opacity: 0, x: -100 }}
             animate={inViews[8] ? { rotate: 10, opacity: 1, x: -20, y: 300 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-50 h-auto max-w-xs"
+            className="w-full h-auto max-w-xs"
           >
             <img
               src="https://i.imgur.com/70UaXmn.jpeg"
               alt="Main Phone Mobile"
-              className="w-40 h-auto object-cover rounded-lg"
+              className="w-30 h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
@@ -97,7 +97,7 @@ function App() {
             <img
               src="https://i.imgur.com/OgTvDJ9.jpeg"
               alt="Main Phone Mobile"
-              className="w-40 h-auto object-cover rounded-lg"
+              className="w-30 h-auto object-cover rounded-lg"
             />
           </motion.div>
         </div>
