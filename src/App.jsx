@@ -26,6 +26,12 @@ function App() {
   const ref8 = useRef(null);
   const isInView8 = useInView(ref8, { once: false });
 
+    const ref9 = useRef(null);
+  const isInView9 = useInView(ref9, { once: false });
+
+    const ref10 = useRef(null);
+  const isInView10 = useInView(ref10, { once: false });
+
   const scrollImages = [
     "https://i.imgur.com/OgTvDJ9.jpeg",
     "https://i.imgur.com/lThPxB5.jpeg",
@@ -54,12 +60,12 @@ function App() {
         <div ref={ref7} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
-            animate={isInView7 ? { rotate: 10, opacity: 1, x: 0, y: 100} : {}}
+            animate={isInView7 ? { rotate: 10, opacity: 1, x: 0, y: 200} : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-50"
+            className="w-40"
           >
             <img
-              src="https://i.imgur.com/70UaXmn.jpeg"
+              src="https://i.imgur.com/gjNOIdU.jpeg"
               alt="Main Phone Mobile"
               className="w-full h-auto object-cover rounded-lg"
             />
@@ -70,9 +76,9 @@ function App() {
         <div ref={ref8} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
             initial={{ opacity: 0, x: 300, y: 40 }}
-            animate={isInView8 ? { rotate: 10, opacity: 1, x: 300, y: -140 } : {}}
+            animate={isInView8 ? { rotate: 10, opacity: 1, x: 200, y: -200 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-50"
+            className="w-40"
           >
             <img
               src="https://i.imgur.com/vv2fqni.jpeg"
@@ -99,6 +105,37 @@ function App() {
           />
         </motion.div>
       </div>
+
+       <div ref={ref9} className="absolute w-full max-w-screen-md pt-10 z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={isInView9 ? { rotate: 10, opacity: 1, x: 5, y: 300} : {}}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="w-35"
+          >
+            <img
+              src="https://i.imgur.com/70UaXmn.jpeg"
+              alt="Main Phone Mobile"
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          </motion.div>
+        </div>
+
+        {/* Animated Background Image */}
+        <div ref={ref10} className="absolute w-full max-w-screen-md pt-10 z-10">
+          <motion.div
+            initial={{ opacity: 0, x: 300, y: 40 }}
+            animate={isInView10 ? { rotate: 10, opacity: 1, x: 300, y: -120 } : {}}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="w-30"
+          >
+            <img
+              src="https://i.imgur.com/OgTvDJ9.jpeg"
+              alt="Main Phone Mobile"
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          </motion.div>
+          </div>
     </section>
 
       {/* Side-by-Side Image Section */}
