@@ -90,7 +90,7 @@ function App() {
         <div ref={refs[9]} className="absolute w-full max-w-screen-md pt-10 z-10">
           <motion.div
             initial={{ opacity: 0, x: 300, y: 40 }}
-            animate={inViews[9] ? { rotate: 10, opacity: 1, x: 270, y: -120 } : {}}
+            animate={inViews[9] ? { rotate: 10, opacity: 1, x: 200, y: -120 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="w-full max-w-xs"
           >
@@ -113,7 +113,7 @@ function App() {
           >
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
               <img
-                src="https://i.imgur.com/9GFQOJ2.jpeg"
+                src="https://i.imgur.com/YrqbmNh.jpeg"
                 alt="Side Image 1"
                 className="w-full md:w-1/2 object-cover rounded-lg"
               />
