@@ -22,6 +22,8 @@ function App() {
     "https://i.imgur.com/lThPxB5.jpeg",
     "https://i.imgur.com/kW1yT1a.jpeg",
     "https://i.imgur.com/gDFc1KP.jpeg",
+  ];
+   const scrollImages1 = [
     "https://i.imgur.com/E3tmQTS.jpeg",
     "https://i.imgur.com/wvYzh6X.jpeg",
     "https://i.imgur.com/vv2fqni.jpeg",
@@ -70,13 +72,13 @@ function App() {
           >
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
               <img
-                src="https://i.imgur.com/SdXtFec.png"
+                src="https://i.imgur.com/9GFQOJ2.jpeg"
                 alt="Side Image 1"
                 className="w-full md:w-1/2 object-cover rounded-lg"
                 loading="lazy"
               />
               <img
-                src="https://i.imgur.com/chXrqB7.jpeg"
+                src="https://i.imgur.com/gsspBVW.jpeg"
                 alt="Side Image 2"
                 className="w-full md:w-1/2 object-cover rounded-lg"
                 loading="lazy"
@@ -87,30 +89,53 @@ function App() {
       </section>
 
       {/* Slideshow Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 space-y-10 shadow-2xl bg-[url('https://i.imgur.com/LQzbKRm.jpeg')] bg-cover">
-        <div className="overflow-hidden w-full mt-10" ref={ref1}>
-          <motion.div
-            className="flex whitespace-nowrap"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{
-              repeat: Infinity,
-              repeatType: 'loop',
-              ease: 'linear',
-              duration: 20,
-            }}
-          >
-            {[...Array(2)].flatMap(() => scrollImages).map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt={`Scroll Image ${index + 1}`}
-                className="w-36 h-60 md:w-50 md:h-80 object-cover rounded-md mx-2"
-              />
-            ))}
-          </motion.div>
-        </div>
-      </section>
+        <section className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 space-y-10 shadow-2xl bg-[url('https://i.imgur.com/LQzbKRm.jpeg')] bg-cover">
+          {/* First Scrolling Image Row */}
+          <div className="overflow-hidden w-full mt-10" ref={ref1}>
+            <motion.div
+              className="flex whitespace-nowrap flex-row"
+              animate={{ x: ['0%', '-50%'] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'linear',
+                duration: 10,
+              }}
+            >
+              {[...Array(2)].flatMap(() => scrollImages).map((src, index) => (
+                <img
+                  key={`scroll1-${index}`}
+                  src={src}
+                  alt={`Scroll Image 1 - ${index + 1}`}
+                  className="w-36 h-60 md:w-50 md:h-80 object-cover rounded-md mx-2"
+                />
+              ))}
+            </motion.div>
+          </div>
 
+          {/* Second Scrolling Image Row */}
+          <div className="overflow-hidden w-full" ref={ref2}>
+            <motion.div
+              className="flex whitespace-nowrap flex-row"
+              animate={{ x: ['0%', '-50%'] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'linear',
+                duration: 12, // Optional: different speed for visual contrast
+              }}
+            >
+              {[...Array(2)].flatMap(() => scrollImages1).map((src, index) => (
+                <img
+                  key={`scroll2-${index}`}
+                  src={src}
+                  alt={`Scroll Image 2 - ${index + 1}`}
+                  className="w-36 h-60 md:w-50 md:h-80 object-cover rounded-md mx-2"
+                />
+              ))}
+            </motion.div>
+          </div>
+        </section>
       {/*Theme */}
       <section id="details" className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-6 text-center mt-10">
         <div ref={ref5} className="w-full max-w-screen-md overflow-hidden">
