@@ -113,7 +113,7 @@ function App() {
           >
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
               <img
-                src="https://i.imgur.com/YrqbmNh.jpeg"
+                src="https://i.imgur.com/Jm0aigT.jpeg"
                 alt="Side Image 1"
                 className="w-full md:w-1/2 object-cover rounded-lg"
               />
