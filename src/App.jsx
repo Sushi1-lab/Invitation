@@ -233,7 +233,7 @@ function App() {
             transition={{ duration: 1, ease: 'easeOut' }}
           >
             <img
-              src="https://i.imgur.com/7jGWOIB.png"
+              src="https://i.imgur.com/oads2N7.png"
               alt="Additional Event Details"
               className="w-full h-auto object-cover rounded-2xl shadow-xl border-2 border-amber-100"
             />
@@ -283,7 +283,7 @@ function App() {
           </motion.a>
         </div>
       </section>
-      <img className=" rounded-2xl shadow-2xl" src="https://i.imgur.com/6hFAGHp.png" alt="d" />
+      <img className=" rounded-2xl shadow-2xl" src="https://i.imgur.com/uts5Zq9.png" alt="d" />
       {/* RSVP Section */}
       <section
         id="rsvp"
