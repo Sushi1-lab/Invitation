@@ -186,7 +186,6 @@ function App() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-amber-800 drop-shadow-sm"
         >
-          🎉 Our Fun Moments!
         </motion.h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center max-w-screen-xl mx-auto">
           {allGalleryImages.map((src, index) => (
