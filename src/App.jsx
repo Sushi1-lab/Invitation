@@ -282,7 +282,7 @@ function App() {
           </motion.a>
         </div>
       </section>
-      <img className=" rounded-2xl shadow-2xl" src="https://i.imgur.com/uts5Zq9.png" alt="d" />
+      <img className=" rounded-2xl shadow-2xl" src="https://i.imgur.com/fR7wWSo.png" alt="d" />
       {/* RSVP Section */}
       <section
         id="rsvp"
