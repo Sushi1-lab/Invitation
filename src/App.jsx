@@ -1,203 +1,262 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react'; // Import useState
 import { motion, useInView } from 'framer-motion';
 
 function App() {
-  const refs = Array.from({ length: 10 }, () => useRef(null));
-  const inViews = refs.map((ref) => useInView(ref, { once: false }));
+  // Using named refs for better readability and specific targeting
+  const welcomeTextRef = useRef(null);
+  const welcomeImage1Ref = useRef(null);
+  const welcomeImage2Ref = useRef(null);
+  const mainImageRef = useRef(null);
+  const mainImageOverlay1Ref = useRef(null);
+  const mainImageOverlay2Ref = useRef(null);
+  const sideImagesRef = useRef(null);
+  const photoGalleryRef = useRef(null);
+  const eventDetails1Ref = useRef(null);
+  const eventDetails2Ref = useRef(null);
+  const mapSectionRef = useRef(null);
+  const rsvpSectionRef = useRef(null);
+  const audioRef = useRef(null); // Ref for the audio element
 
-  const scrollImages = [
-    "https://i.imgur.com/OgTvDJ9.jpeg",
-    "https://i.imgur.com/lThPxB5.jpeg",
-    "https://i.imgur.com/kW1yT1a.jpeg",
-    "https://i.imgur.com/gDFc1KP.jpeg",
+  // Use state to manage whether the music is playing or not
+  const [isPlaying, setIsPlaying] = useState(false); // Re-introducing isPlaying state
+
+  // Use useInView for each ref that needs entrance animations
+  const isInViewWelcomeText = useInView(welcomeTextRef, { once: true });
+  const isInViewWelcomeImage1 = useInView(welcomeImage1Ref, { once: true });
+  const isInViewWelcomeImage2 = useInView(welcomeImage2Ref, { once: true });
+  const isInViewMainImage = useInView(mainImageRef, { once: true });
+  const isInViewMainImageOverlay1 = useInView(mainImageOverlay1Ref, { once: true });
+  const isInViewMainImageOverlay2 = useInView(mainImageOverlay2Ref, { once: true });
+  const isInViewSideImages = useInView(sideImagesRef, { once: true });
+  const isInViewPhotoGallery = useInView(photoGalleryRef, { once: true });
+  const isInViewEventDetails1 = useInView(eventDetails1Ref, { once: true });
+  const isInViewEventDetails2 = useInView(eventDetails2Ref, { once: true });
+  const isInViewMapSection = useInView(mapSectionRef, { once: true });
+  const isInViewRsvpSection = useInView(rsvpSectionRef, { once: true });
+
+  // Consolidated all gallery images into one array
+  const allGalleryImages = [
+    "https://i.imgur.com/sJU9PjB.jpeg",
+    "https://i.imgur.com/LprlcPx.jpeg",
+    "https://i.imgur.com/rYHDnDo.jpeg",
+    "https://i.imgur.com/sUEGIpg.jpeg",
+    "https://i.imgur.com/xMmHNiv.jpeg",
+    "https://i.imgur.com/bX8W2s8.jpeg"
+ 
   ];
-  const scrollImages1 = [
-    "https://i.imgur.com/E3tmQTS.jpeg",
-    "https://i.imgur.com/wvYzh6X.jpeg",
-    "https://i.imgur.com/vv2fqni.jpeg",
-  ];
+
+  // Function to toggle music playback - Re-introducing this function
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        // Attempt to play. This will only work if initiated by user interaction.
+        audioRef.current.play().catch(error => {
+          console.log("Play failed:", error);
+          // This catch block will likely be hit if autoplay is attempted without user interaction
+          // or if the user quickly navigates away/back.
+        });
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
-    <div className="pt-20 px-4 md:px-6 flex flex-col bg-amber-200">
-      <section className="relative min-h-screen flex flex-col items-center justify-center bg-[url('https://i.imgur.com/PaftnfX.jpeg')] bg-cover bg-center rounded-lg shadow-lg p-6 md:p-10 text-center overflow-hidden">
-        <h1 className="text-orange-400 text-3xl md:text-5xl font-extrabold mb-4 z-20 relative">Join Us for a Celebration!</h1>
-        <p className="text-orange-400 text-base md:text-xl max-w-xl z-20 relative">
-          We are excited to invite you to our special event filled with fun, food, and friends.
-        </p>
+    <div className="pt-20 px-4 md:px-6 flex flex-col bg-amber-50 min-h-screen font-sans">
+      {/* Audio Element for Background Music */}
+      {/* Removed autoPlay and muted attributes. Playback is now triggered by the button. */}
+      <audio ref={audioRef} src="/Happy Birthday song - Funny Wild Animal Party.mp3" loop />
+      
+      {/* "Click Me" Button to control music playback */}
+      <button 
+        onClick={togglePlayPause}
+        className="fixed right-4 z-10 p-3 md:p-4 rounded-full bg-orange-400 text-white shadow-lg transition-transform hover:scale-110 text-sm md:text-base font-semibold"
+      >
+        {isPlaying ? "Pause Music" : "Click Me to Play Music"}
+      </button>
 
-        <div ref={refs[6]} className="absolute w-full max-w-screen-md pt-10 z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={inViews[6] ? { rotate: 10, opacity: 1, x: 0, y: 200 } : {}}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full max-w-xs md:max-w-sm"
+      {/* Welcome Section */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center bg-[url('https://i.imgur.com/PaftnfX.jpeg')] bg-cover bg-center rounded-3xl shadow-2xl p-6 md:p-10 text-center overflow-hidden mb-16">
+        <div ref={welcomeTextRef}>
+          <motion.h1
+            initial={{ opacity: 0, y: -50 }}
+            animate={isInViewWelcomeText ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="text-orange-400 text-5xl md:text-7xl font-extrabold mb-4 z-20 relative drop-shadow-lg"
           >
-            <img
-              src="https://i.imgur.com/gjNOIdU.jpeg"
-              alt="Main Phone Mobile"
-              className="w-50 h-auto object-cover rounded-lg"
-            />
-          </motion.div>
-        </div>
-
-        <div ref={refs[7]} className="absolute w-full max-w-screen-md pt-10 z-10">
-          <motion.div
-            initial={{ opacity: 0, x: 300, y: 40 }}
-            animate={inViews[7] ? { rotate: 10, opacity: 1, x: 200, y: -200 } : {}}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-50 max-w-xs md:max-w-sm"
+            Join Us for a Celebration!
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInViewWelcomeText ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+            className="text-orange-400 text-lg md:text-2xl max-w-xl z-20 relative px-4"
           >
-            <img
-              src="https://i.imgur.com/vv2fqni.jpeg"
-              alt="Main Phone Mobile"
-              className="w-50 h-auto object-cover rounded-lg"
-            />
-          </motion.div>
+            We are excited to invite you to our special event filled with fun, food, and friends.
+          </motion.p>
         </div>
+        <img
+              src="https://i.imgur.com/3x68JCF.jpeg"
+              alt="Detail Image 1"
+              className=" pt-20 w-full h-auto rounded-3xl"
+            />
       </section>
 
-      <section className="relative flex justify-center m-10">
-        <div ref={refs[5]} className="w-full max-w-screen-md pt-10">
+      {/* Main Feature Image Section */}
+      <section className="relative flex justify-center py-16 px-4">
+        <div ref={mainImageRef} className="w-full max-w-screen-xl">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={inViews[5] ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInViewMainImage ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="w-full"
           >
             <img
               src="https://i.imgur.com/HqzWBxK.jpeg"
-              alt="Main Phone Mobile"
-              className="w-full h-auto object-cover rounded-lg"
+              alt="Main Event Display"
+              className="w-full h-auto object-cover rounded-3xl shadow-2xl border-4 border-amber-200"
             />
           </motion.div>
         </div>
 
-        <div ref={refs[8]} className="absolute w-full max-w-screen-md pt-10 z-10">
+        {/* Overlaying images on Main Feature Image */}
+        <div ref={mainImageOverlay1Ref} className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={inViews[8] ? { rotate: 10, opacity: 1, x: -20, y: 300 } : {}}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full h-auto max-w-xs"
+            initial={{ opacity: 0, x: -100, rotate: -15 }}
+            animate={isInViewMainImageOverlay1 ? { opacity: 1, x: 0, rotate: 5 } : {}}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+            className="w-36 md:w-48"
           >
             <img
               src="https://i.imgur.com/70UaXmn.jpeg"
-              alt="Main Phone Mobile"
-              className="w-30 h-auto object-cover rounded-lg"
+              alt="Detail Image 1"
+              className="w-full h-auto object-cover rounded-xl shadow-lg"
             />
           </motion.div>
         </div>
 
-        <div ref={refs[9]} className="absolute w-full max-w-screen-md pt-10 z-10">
+        <div ref={mainImageOverlay2Ref} className="absolute bottom-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
           <motion.div
-            initial={{ opacity: 0, x: 300, y: 40 }}
-            animate={inViews[9] ? { rotate: 10, opacity: 1, x: 200, y: -120 } : {}}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full max-w-xs"
+            initial={{ opacity: 0, x: 100, rotate: 15 }}
+            animate={isInViewMainImageOverlay2 ? { opacity: 1, x: 0, rotate: -5 } : {}}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
+            className="w-36 md:w-48"
           >
             <img
               src="https://i.imgur.com/OgTvDJ9.jpeg"
-              alt="Main Phone Mobile"
-              className="w-30 h-auto object-cover rounded-lg"
+              alt="Detail Image 2"
+              className="w-full h-auto object-cover rounded-xl shadow-lg"
             />
           </motion.div>
         </div>
       </section>
 
-      <section className="min-h-screen flex flex-col mb-10 justify-center items-center px-4">
-        <div ref={refs[2]} className="w-full max-w-screen-lg">
+      {/* Side-by-Side Images Section */}
+      <section className="min-h-screen flex flex-col justify-center items-center px-4 py-16">
+        <div ref={sideImagesRef} className="w-full max-w-screen-lg">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={inViews[2] ? { opacity: 1, y: 0 } : {}}
+            animate={isInViewSideImages ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="w-full"
           >
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
               <img
-                src="https://i.imgur.com/Jm0aigT.jpeg"
+                src="https://i.imgur.com/4kNTIAq.jpeg"
                 alt="Side Image 1"
-                className="w-full md:w-1/2 object-cover rounded-lg"
+                className="w-full md:w-1/2 object-cover rounded-xl shadow-xl"
               />
               <img
-                src="https://i.imgur.com/gsspBVW.jpeg"
+                src="https://i.imgur.com/FZcNVGz.jpeg"
                 alt="Side Image 2"
-                className="w-full md:w-1/2 object-cover rounded-lg"
+                className="w-full md:w-1/2 object-cover rounded-xl shadow-xl"
               />
             </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="min-h-screen flex flex-col items-center justify-center rounded-lg p-6 md:p-10 space-y-10 shadow-2xl bg-[url('https://i.imgur.com/LQzbKRm.jpeg')] bg-cover">
-        <div className="overflow-hidden w-full mt-10" ref={refs[0]}>
-          <motion.div
-            className="flex whitespace-nowrap"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ repeat: Infinity, ease: 'linear', duration: 10 }}
-          >
-            {[...Array(2)].flatMap(() => scrollImages).map((src, index) => (
+      {/* Static Photo Gallery Section */}
+      <section className="py-16 bg-amber-100 rounded-3xl shadow-inner px-4 mb-16">
+        <motion.h2
+          ref={photoGalleryRef}
+          initial={{ opacity: 0, y: -30 }}
+          animate={isInViewPhotoGallery ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-amber-800 drop-shadow-sm"
+        >
+          🎉 Our Fun Moments!
+        </motion.h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center max-w-screen-xl mx-auto">
+          {allGalleryImages.map((src, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInViewPhotoGallery ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.1 }}
+              className="w-full h-48 md:h-64 lg:h-72 flex items-center justify-center rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"
+            >
               <img
-                key={`scroll1-${index}`}
                 src={src}
-                alt={`Scroll Image 1 - ${index + 1}`}
-                className="w-36 h-60 md:w-48 md:h-80 object-cover rounded-md mx-2"
+                alt={`Gallery Image ${index + 1}`}
+                className="w-full h-full object-cover"
               />
-            ))}
-          </motion.div>
-        </div>
-
-        <div className="overflow-hidden w-full" ref={refs[1]}>
-          <motion.div
-            className="flex whitespace-nowrap"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ repeat: Infinity, ease: 'linear', duration: 12 }}
-          >
-            {[...Array(2)].flatMap(() => scrollImages1).map((src, index) => (
-              <img
-                key={`scroll2-${index}`}
-                src={src}
-                alt={`Scroll Image 2 - ${index + 1}`}
-                className="w-36 h-60 md:w-48 md:h-80 object-cover rounded-md mx-2"
-              />
-            ))}
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      <section className="flex flex-col items-center justify-center rounded-lg p-6 text-center mt-10">
-        <div ref={refs[4]} className="object-cover max-w-screen-md overflow-hidden w-full">
+      {/* Event Details Image 1 */}
+      <section className="flex flex-col items-center justify-center p-6 text-center py-16">
+        <div ref={eventDetails1Ref} className="max-w-screen-md w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={inViews[4] ? { opacity: 1, y: 0 } : {}}
+            animate={isInViewEventDetails1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
             <img
               src="https://i.imgur.com/CgWKLNx.png"
               alt="Event Details"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-2xl shadow-xl border-2 border-amber-100"
             />
           </motion.div>
         </div>
       </section>
 
-      <section className="flex flex-col items-center justify-center rounded-lg p-6 text-center mt-10">
-        <div ref={refs[3]} className="object-cover max-w-screen-md overflow-hidden w-full">
+      {/* Event Details Image 2 */}
+      <section className="flex flex-col items-center justify-center p-6 text-center py-16">
+        <div ref={eventDetails2Ref} className="max-w-screen-md w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={inViews[3] ? { opacity: 1, y: 0 } : {}}
+            animate={isInViewEventDetails2 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
             <img
               src="https://i.imgur.com/7jGWOIB.png"
-              alt="Event Details"
-              className="w-full h-auto object-cover rounded-lg"
+              alt="Additional Event Details"
+              className="w-full h-auto object-cover rounded-2xl shadow-xl border-2 border-amber-100"
             />
           </motion.div>
         </div>
       </section>
 
-      <section className="w-full max-w-screen-md mx-auto my-10 px-4">
-        <h2 className="text-2xl font-bold mb-4 text-center">📍 Location Map</h2>
-        <div className="rounded-lg overflow-hidden shadow-lg">
+      {/* Location Map Section */}
+      <section ref={mapSectionRef} className="w-full max-w-screen-xl mx-auto my-16 px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          animate={isInViewMapSection ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="text-4xl font-bold mb-8 text-center text-amber-800"
+        >
+          📍 Event Location
+        </motion.h2>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInViewMapSection ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
+          className="rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-300"
+        >
           <iframe
             title="Event Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d941.9431029371838!2d121.01325188556838!3d14.325871737615802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d6f28daeeb0f%3A0x3d4d21371aaf7b96!2sClubhouse%20Phase%203%20St.%20Joseph%20Village%2010!5e0!3m2!1sen!2sph!4v1748181307831!5m2!1sen!2sph"
@@ -208,32 +267,64 @@ function App() {
             referrerPolicy="no-referrer-when-downgrade"
             className="w-full h-[450px] border-0"
           ></iframe>
-        </div>
+        </motion.div>
 
-        <div className="flex justify-center mt-6">
-          <a
+        <div className="flex justify-center mt-8">
+          <motion.a
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInViewMapSection ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
             href="https://www.google.com/maps/dir/?api=1&destination=14.325872,121.013252"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-md shadow transition"
+            className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition transform hover:scale-105 text-lg"
           >
             🧭 Get Directions
-          </a>
+          </motion.a>
         </div>
       </section>
-
-      <section id="rsvp" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-yellow-400 to-amber-500 rounded-lg shadow-lg p-6 md:p-10 text-center mt-10 text-white">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">RSVP</h2>
-        <p className="text-base md:text-lg mb-6">Please let us know if you can make it by August 3, 2025 | Sunday.</p>
-        <p className="text-base md:text-lg mb-6">Contact Us to confirm your attendance! +639664654778 or click below:</p>
-        <a
+      <img className=" rounded-2xl shadow-2xl" src="https://i.imgur.com/6hFAGHp.png" alt="d" />
+      {/* RSVP Section */}
+      <section
+        id="rsvp"
+        ref={rsvpSectionRef}
+        className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-yellow-500 to-amber-600 rounded-3xl shadow-2xl p-6 md:p-10 text-center mt-16 text-white mb-20"
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          animate={isInViewRsvpSection ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="text-4xl md:text-5xl font-bold mb-8 drop-shadow-md"
+        >
+          RSVP
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInViewRsvpSection ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+          className="text-lg md:text-xl mb-6 max-w-prose px-4"
+        >
+          Please let us know if you can make it by August 3, 2025 | Sunday.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInViewRsvpSection ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
+          className="text-lg md:text-xl mb-8 max-w-prose px-4"
+        >
+          Contact us to confirm your attendance! You can call or text +639664654778 or click the button below:
+        </motion.p>
+        <motion.a
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInViewRsvpSection ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.6 }}
           href="https://www.facebook.com/iAmjOnas.ivx?mibextid=wwXIfr"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-white text-amber-600 font-semibold px-6 py-3 rounded-md shadow hover:bg-amber-100 transition"
+          className="inline-block bg-white text-amber-600 font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-amber-100 transition transform hover:scale-105 text-lg"
         >
-          Message Us
-        </a>
+          Message Us on Facebook
+        </motion.a>
       </section>
     </div>
   );
