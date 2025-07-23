@@ -119,37 +119,6 @@ function App() {
             />
           </motion.div>
         </div>
-
-        {/* Overlaying images on Main Feature Image */}
-        <div ref={mainImageOverlay1Ref} className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
-          <motion.div
-            initial={{ opacity: 0, x: -100, rotate: -15 }}
-            animate={isInViewMainImageOverlay1 ? { opacity: 1, x: 0, rotate: 5 } : {}}
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
-            className="w-36 md:w-48"
-          >
-            <img
-              src="https://i.imgur.com/70UaXmn.jpeg"
-              alt="Detail Image 1"
-              className="w-full h-auto object-cover rounded-xl shadow-lg"
-            />
-          </motion.div>
-        </div>
-
-        <div ref={mainImageOverlay2Ref} className="absolute bottom-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
-          <motion.div
-            initial={{ opacity: 0, x: 100, rotate: 15 }}
-            animate={isInViewMainImageOverlay2 ? { opacity: 1, x: 0, rotate: -5 } : {}}
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
-            className="w-36 md:w-48"
-          >
-            <img
-              src="https://i.imgur.com/OgTvDJ9.jpeg"
-              alt="Detail Image 2"
-              className="w-full h-auto object-cover rounded-xl shadow-lg"
-            />
-          </motion.div>
-        </div>
       </section>
 
       {/* Side-by-Side Images Section */}
@@ -168,7 +137,7 @@ function App() {
                 className="w-full md:w-1/2 object-cover rounded-xl shadow-xl"
               />
               <img
-                src="https://i.imgur.com/FZcNVGz.jpeg"
+                src="https://i.imgur.com/qAWF6kX.jpeg"
                 alt="Side Image 2"
                 className="w-full md:w-1/2 object-cover rounded-xl shadow-xl"
               />
